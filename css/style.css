@@ -1,0 +1,836 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    font-family: Montserrat, sans-serif;
+    background-image: radial-gradient(#a4b8ed 10%, transparent 5%);
+    background-color: #fff;
+    background-position: 0 0, 1px 1px;
+    background-size: 5px 5px;
+    font-size: 16px;
+    color: #4d77e2;
+    font-weight: 300;
+}
+
+h1
+{
+    opacity: 1;
+    font-size: 50px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+h3
+{
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-left: 60px;
+    margin-top: -26px;
+    margin-bottom: 30px;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="password"],
+input[type="file"]
+{
+    display: block;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    padding: 4px;
+    width: 220px;
+    height: 32px;
+    border: none;
+    outline: none;
+    border-left: 4px solid #4d77e2;
+    font-weight: 400;
+    font-size: 15px;
+    transition: 0.2s ease;
+    background-color: #cbd9fb;
+    color: #4d77e2;
+}
+
+button[type="submit"]
+{
+    margin-left: 50px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    width: 120px;
+    height: 32px;
+    border: none;
+    border-radius: 2px;
+    color: #fff;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: 0.2s ease;
+    cursor: pointer;
+    background-color: #4d77e2;
+}
+
+button[type="submit"]:hover,
+button[type="submit"]:focus
+{
+    background: #0738b5;
+    transition: 0.2s ease;
+}
+
+/* The typing effect */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 260px }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #4d77e2; }
+}
+
+#video {
+    border-radius: 10px;
+    position: relative;
+    /* border: 1px solid #4d77e2; */
+    margin-left: 20px;
+    margin-top: 40px;
+    width:600px;
+    height:450px;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.filter {
+    position: absolute;
+    left: 160px;
+    top: 56px;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    z-index: 100;
+}
+
+.filter-two {
+    position: absolute;
+    left: 558px;
+    top: 431px;
+    z-index: 1000;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+#photo {
+    border-radius: 10px;
+    float: left;
+    position: absolute;
+    left: 520px;
+    top: 425px;
+    border: 1px solid #4d77e2;
+    width:160px;
+    height:120px;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+#canvas {
+    display:none;
+}
+
+.camera {
+    width: 340px;
+    display:inline-block;
+}
+
+.output {
+    width: 340px;
+    display:inline-block;
+}
+
+#file {
+    display: inline;
+    border-radius: 5px;
+    color: #4d77e2;
+    display:block;
+    margin-top: -490px;
+    margin-left: -30px;
+}
+
+#capture {
+    display: inline;
+    border-radius: 5px;
+    color: #4d77e2;
+    display:block;
+    margin-top: -520px;
+    margin-left: -30px;
+}
+
+#remove {
+    display: inline;
+    border-radius: 5px;
+    color: #4d77e2;
+    display:block;
+    margin-top: 10px;
+    margin-left: -30px;
+}
+
+#remove-upload {
+    display: inline;
+    border-radius: 5px;
+    color: #4d77e2;
+    display:block;
+    margin-top: -490px;
+    margin-left: -30px;
+}
+
+#remove-photo {
+    position: absolute;
+    border-radius: 5px;
+    color: #4d77e2;
+    display:block;
+    margin-top: -10px;
+    margin-left: -20px;
+    z-index: 20;
+}
+
+#upload {
+    display: inline;
+    border-radius: 5px;
+    color: #4d77e2;
+    display:block;
+    margin-top: 10px;
+    margin-left: -30px;
+}
+
+#refresh {
+    position: absolute;
+    border-radius: 100px;
+    color: #4d77e2;
+    margin-top: -120px;
+    margin-left: 730px;
+    z-index: 1000;
+}
+
+#refresh-upload {
+    position: absolute;
+    border-radius: 100px;
+    color: #4d77e2;
+    margin-top: -70px;
+    margin-left: 730px;
+    z-index: 1000;
+}
+
+#filter-box
+{
+    position: relative;
+    margin: 5% auto;
+    height: 40px;
+    width: 470px;
+    margin-left: 20px;
+    margin-top: -10px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+}
+
+#filter-box-upload
+{
+    position: relative;
+    margin: 5% auto;
+    height: 40px;
+    width: 470px;
+    margin-left: 80px;
+    margin-top: -20px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+}
+
+#login-box
+{
+    position: relative;
+    margin: 5% auto;
+    height: 475px;
+    width: 300px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+}
+
+#signup-box
+{
+    border-radius: 25px;
+    position: relative;
+    margin: 5% auto;
+    height: 550px;
+    width: 600px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+#success-box
+{
+    position: relative;
+    margin: 5% auto;
+    height: 300px;
+    width: 600px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    border-radius: 25px;
+}
+
+#profile-box
+{
+    position: relative;
+    margin: 5% auto;
+    height: 500px;
+    width: 400px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    border-radius: 25px;
+}
+
+#profile-box-edit
+{
+    position: relative;
+    margin: 5% auto;
+    height: 650px;
+    width: 300px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    border-radius: 25px;
+}
+
+#contact-box
+{
+    position: relative;
+    margin: 5% auto;
+    height: 400px;
+    width: 400px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    border-radius: 25px;
+}
+
+#gallery-box
+{
+    position: relative;
+    margin: 5% auto;
+    height: 580px;
+    width: 680px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    border-radius: 25px;
+}
+
+#preview-box
+{
+    position: absolute;
+    margin-top: -112px;
+    margin-left: 750px;
+    height: 450px;
+    width: 300px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    border-radius: 25px;
+    overflow-y: scroll;
+    padding-bottom: 10px;
+}
+
+#preview-box::-webkit-scrollbar {
+    display: none;
+}
+
+#preview-box-upload
+{
+    position: absolute;
+    margin-top: -70px;
+    margin-left: 750px;
+    height: 450px;
+    width: 300px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    border-radius: 25px;
+    overflow-y: scroll;
+    padding-bottom: 10px;
+}
+
+#preview-box-upload::-webkit-scrollbar {
+    display: none;
+}
+
+#feed-box
+{
+    position: relative;
+    margin: 5% auto;
+    height: 630px;
+    width: 680px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    border-radius: 25px;
+}
+
+#uploaded {
+    border-radius: 10px;
+    position: relative;
+    margin-left: 20px;
+    margin-top: 40px;
+    width:600px;
+    height:450px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.preview {
+    width: 100%;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    border-radius: 10px;
+}
+
+.content-profile
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding: 40px;
+    width: 400px;
+    height: 500px;
+    color: #4d77e2;
+}
+
+.ctitle {
+    text-align: center;
+}
+
+.utitle {
+    text-align: center;
+    margin-top: 0px;
+}
+
+.nav-list
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /*background-color: #fff;*/
+}
+
+.nav
+{
+    float: left;
+    transition: all .2s ease-in-out;
+}
+
+.nav:hover
+{
+    transform: scale(1.4);
+}
+.nav-link
+{
+    display: block;
+    padding: 14px 16px;
+    color: #98b4fa;
+    font-size: 16px;
+    text-decoration: none;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.active {
+    color: #4d77e2;
+}
+
+.btn {
+    background-color: DodgerBlue;
+    border: none;
+    color: white;
+    padding: 12px 16px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.content
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding: 40px;
+    width: 300px;
+    height: 400px;
+    color: #4d77e2;
+}
+
+.content-preview
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding: 20px;
+    padding-bottom: 20px;
+    width: 300px;
+    height: 400px;
+    color: #4d77e2;
+    margin-bottom: 10px;
+}
+
+.content-gallery
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding: 20px 20px 20px 40px;
+    width: 300px;
+    height: 400px;
+    color: #4d77e2;
+}
+
+.content-edit
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding: 40px;
+    width: 250px;
+    height: 400px;
+    color: #4d77e2;
+}
+
+.content-camera
+{
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    box-sizing: border-box;
+    width: 300px;
+    height: 400px;
+    color: #4d77e2;
+}
+
+.error
+{
+    margin-top: -20px;
+    font-size: 15px;
+    text-align: center;
+    color: #d43a22
+}
+
+.success
+{
+    text-align: center;
+    color: #156b31;
+}
+
+.sign-up
+{
+    margin-left: -10px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.content-contact
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding: 40px;
+    width: 400px;
+    height: 400px;
+    color: #4d77e2;
+    text-align: center;
+}
+
+.contact
+{
+    margin-top: 40px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.email {
+    text-decoration: none;
+    color: #4d77e2;
+}
+
+.boxtitle
+{
+    margin: 0 0 24px 0;
+    font-weight: 400;
+    font-size: 28px;
+    text-align: center;
+}
+
+.sinfo
+{
+    margin-top: 30px;
+    font-size: 23px;
+    text-align: center;
+    color: #fff;
+}
+
+.name
+{
+    position: absolute;
+    width: 300px;
+    margin-top: 35px;
+    margin-left: 110px;
+}
+
+.profile-pic
+{
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 30px;
+    width: 70px;
+    border-radius: 25px;
+}
+
+.info
+{
+    position: absolute;
+    margin-top: 80px;
+}
+
+.pinfo
+{
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-left: 60px;
+    margin-top: -26px;
+    margin-bottom: 30px;
+}
+
+.question-edit
+{
+    text-align: center;
+    line-height: 5px;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+
+.question
+{
+    line-height: 5px;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+
+.answer
+{
+    line-height: 5px;
+    margin-left: 20px;
+    color: #000;
+    margin-bottom: 40px;
+}
+
+.edit
+{
+    color: #4d77e2;
+    float: right;
+    text-decoration: none;
+    margin-right: -60px;
+    margin-top: -100px;
+    transition: all .2s ease-in-out;
+}
+
+.edit:hover
+{
+    transform: scale(1.8);
+}
+
+.up {
+    width: 260px;
+    overflow: hidden;                    /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid transparent;    /* The typwriter cursor */
+    white-space: nowrap;                /* Keeps the content on a single line */
+    margin: 0 auto;                    /* Gives that scrolling effect as the typing happens */
+    margin-top: 40px;
+    letter-spacing: .0001em;             /* Adjust as needed */
+    animation:
+        typing 2s steps(20, end),
+        blink-caret .75s step-end 7;
+}
+
+.left-box
+{
+    border-radius: 25px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding: 40px;
+    width: 300px;
+    height: 550px;
+}
+
+.error
+{
+    margin-top: -20px;
+    font-size: 15px;
+    text-align: center;
+    color: #d43a22
+}
+
+.success
+{
+    text-align: center;
+    color: #156b31;
+}
+
+.footer
+{
+    font-size: 10px;
+    position: relative;
+    bottom: 0px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.right-box
+{
+    border-radius: 25px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    box-sizing: border-box;
+    padding: 40px;
+    width: 300px;
+    height: 550px;
+    background-color: #4d77e2;
+}
+
+.circle
+{
+    position: absolute;
+    top: 180px;
+    left: 280px;
+    width: 40px;
+    height: 40px;
+    background: #efefef;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    line-height: 40px;
+    text-align: center;
+    font-weight: 1000;
+}
+
+.right-box .signinwith
+{
+    display: block;
+    margin-bottom: 40px;
+    font-size: 28px;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+::placeholder {
+    color: #4d77e2;
+}
+
+.down {
+    -webkit-transform:rotate(-180deg);
+    -moz-transform:rotate(-180deg);
+    -o-transform:rotate(-180deg);
+    transform:rotate(-180deg);
+    ms-filter:"progid:DXImageTransform.Microsoft.BasicImage(rotation=2)";
+    filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+    opacity: 0.08;
+}
+
+.C {
+    height: 150px;
+    width: auto;
+    margin-top: 10px;
+    margin-left: 30px;
+}
+
+.checkbox
+{
+    margin-top: 20px;
+    margin-left: 230px;
+    width: 25%;
+}
+
+.footer
+{
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.text
+{
+    padding: 20px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.list-container {
+    width: 600px;
+    overflow: auto;
+    white-space: nowrap;
+    margin-left: -20px;
+    margin-top: -38px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+.list-container a {
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+
+.list-container a:hover {
+    transition: 0.2s ease;
+}
+
+.filter-icon {
+    width: 12%;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+.gallery {
+    border-radius: 10px;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+.comments {
+    float: right;
+    margin-right: -360px;
+}
+
+.likes {
+    float:left;
+}
+
+.chat-icon {
+    margin-right: -250px;
+    margin-top: 16px;
+}
+
+#like-icon {
+    border: none;
+    margin-top: 13px;
+    margin-right: 6px;
+    color: #4d77e2;
+}
+
+.empty {
+    text-align: center;
+}
+
+.add {
+    text-decoration: none;
+    color: #4d77e2;
+}
+
+.form-submit {
+    margin-left: -100px;
+}

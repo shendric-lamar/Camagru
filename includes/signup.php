@@ -4,11 +4,14 @@ if (isset($_POST['signup-submit'])) {
     require 'dbh.php';
 
     $username = $_POST['uid'];
+    $fName = $_POST['f-name'];
+    $lName = $_POST['l-name'];
+    $dob = $_POST['dob'];
     $email = $_POST['mail'];
     $password = $_POST['pwd'];
     $passwordRepeat = $_POST['pwd-repeat'];
 
-    if (empty($username) || empty($email) || empty($password) || empty($passwordRepeat)) {
+    if (empty($username) || empty($fName) || empty($lName) || empty($dob) || empty($email) || empty($password) || empty($passwordRepeat)) {
         header("Location: ../signup.php?error=emptyfields&uid=".$username."&mail=".$email);
         exit();
     }
@@ -29,14 +32,14 @@ if (isset($_POST['signup-submit'])) {
         exit();
     }
     else {
-        $sql = "SELECT uidUsers FROM users WHERE uidUsers=?";
+        $sql = "SELECT uidUsers FROM users WHERE uidUsers=? OR mailUsers=?";
         $stmt = mysqli_stmt_init($conn);
         if (!mysqli_stmt_prepare($stmt, $sql)) {
             header("Location: ../signup.php?error=sqlerror");
             exit();
         }
         else {
-            mysqli_stmt_bind_param($stmt, "s", $username);
+            mysqli_stmt_bind_param($stmt, "ss", $username, $email);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_store_result($stmt);
             $resultCheck = mysqli_stmt_num_rows($stmt);
@@ -45,7 +48,7 @@ if (isset($_POST['signup-submit'])) {
                 exit();
             }
             else {
-                $sql = "INSERT INTO users (uidUsers, mailUsers, pwdUsers) VALUES (?, ?, ?)";
+                $sql = "INSERT INTO users (uidUsers, firstName, lastName, dateOfBirth, mailUsers, pwdUsers, token) VALUES (?, ?, ?, ?, ?, ?, ?)";
                 $stmt = mysqli_stmt_init($conn);
                 if (!mysqli_stmt_prepare($stmt, $sql)) {
                     header("Location: ../signup.php?error=sqlerror");
@@ -53,10 +56,9 @@ if (isset($_POST['signup-submit'])) {
                 }
                 else {
                     $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
-                    mysqli_stmt_bind_param($stmt, "sss", $username, $email, $hashedPwd);
+                    $token = password_hash($username, PASSWORD_DEFAULT);
+                    mysqli_stmt_bind_param($stmt, "sssssss", $username, $fName, $lName, $dob, $email, $hashedPwd, $token);
                     mysqli_stmt_execute($stmt);
-                    $hashedLink = password_hash($username, PASSWORD_DEFAULT);
-                    $url = "localhost:8080/Camagru/login.php?login=succes";
 
                     require '../mailer/PHPMailer/PHPMailerAutoload.php';
                     require 'credentials.php';
@@ -77,8 +79,8 @@ if (isset($_POST['signup-submit'])) {
 
                     $mail->isHTML(true);                              // Set email format to HTML
 
-                    $mail->Subject = 'Verify you Camagru account!';
-                    $mail->Body    = '<p><a href="' . $url . '">' . $hashedLink . '</a></p>';
+                    $mail->Subject = 'Verify your Camagru account!';
+                    $mail->Body    = '<a href="http://localhost:8080/Camagru/login.php?uid=' . $username . '&token=' . $token . '">Click here to verify your account!</a>';
                     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
                     if(!$mail->send()) {
